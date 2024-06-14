@@ -1,34 +1,23 @@
-package Activites;
+package com.ibm.fst_m1_jnuint_01;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import org.junit.jupiter.api.Test;
+//import activityPrograms.BankAccount;
+//import activityPrograms.NotEnoughFundsException;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Activity2 {
-public static void main(String[] args) {
-    int[] arr = {10, 77, 10, 54, -11, 10};
-        System.out.println("Original Array: " + Arrays.toString(arr));
-        int searchNum = 10;
-        int fixedSum = 30;
-
-        System.out.println("Result: " + result(arr, searchNum, fixedSum));
-    }
-    public static boolean result(int[] numbers, int searchNum, int fixedSum) {
-        int temp_sum = 0;
-        //Loop 
-        for (int number : numbers) {
-           
-            if (number == searchNum) {
-                
-                temp_sum += searchNum;
-            }
-
-            if (temp_sum > fixedSum) {
-                break;
-            }
-        }
-
-        //Return true if condition satisfies
-        return temp_sum == fixedSum;
-    }
+@Test
+void notEnoughFunds()
+{
+	BankAccount account = new BankAccount(9);
+	assertThrows(NotEnoughFundsException.class, () -> account.withdraw(10));
 }
-
+@Test
+void enoughFunds() {
+    // Create an object for BankAccount class
+    BankAccount account = new BankAccount(100);
+ 
+    // Assertion for no exceptions
+    assertDoesNotThrow(() -> account.withdraw(100));
+}
+}
